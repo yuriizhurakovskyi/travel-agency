@@ -6,23 +6,45 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String role;
+    private String password;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String phoneNumber) {
+    public User(String firstName, String lastName, String email, String phoneNumber, String role, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.password = password;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String phoneNumber) {
+    public User(Integer id, String firstName, String lastName, String email, String phoneNumber, String role, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {
@@ -73,6 +95,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

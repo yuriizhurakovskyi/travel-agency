@@ -68,4 +68,16 @@ public class Hotel {
     public void setRoomCount(Integer roomCount) {
         this.roomCount = roomCount;
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", roomCount=" + roomCount +
+                '}';
+    }
 }
