@@ -26,7 +26,7 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
     @Override
     public TravelAgency create(TravelAgency travelAgency) {
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection()
-                .prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)){
+                .prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, travelAgency.getName());
             preparedStatement.setString(2, travelAgency.getAddress());
             preparedStatement.setString(3, travelAgency.getEmail());
@@ -46,7 +46,7 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
     @Override
     public TravelAgency read(Integer id) {
         TravelAgency travelAgency = null;
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -66,7 +66,7 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
 
     @Override
     public TravelAgency update(TravelAgency travelAgency) {
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(UPDATE_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(UPDATE_BY_ID)) {
             preparedStatement.setString(1, travelAgency.getName());
             preparedStatement.setString(2, travelAgency.getAddress());
             preparedStatement.setString(3, travelAgency.getEmail());
@@ -82,7 +82,7 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
 
     @Override
     public void delete(Integer id) {
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(DELETE_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(DELETE_BY_ID)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             ConnectionManager.close();
@@ -94,7 +94,7 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
     @Override
     public List<TravelAgency> readAll() {
         List<TravelAgency> travelAgencies = new ArrayList<>();
-        try ( PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer idagency = resultSet.getInt("id");

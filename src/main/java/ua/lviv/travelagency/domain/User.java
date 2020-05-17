@@ -7,25 +7,36 @@ public class User {
     private String email;
     private String phoneNumber;
     private String password;
+    private String role;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String phoneNumber, String password) {
+    public User(String firstName, String lastName, String email, String phoneNumber, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.role = role;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String phoneNumber, String password) {
+    public User(Integer id, String firstName, String lastName, String email, String phoneNumber, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Integer getId() {
