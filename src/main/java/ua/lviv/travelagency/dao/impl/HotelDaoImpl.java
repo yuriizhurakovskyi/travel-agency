@@ -1,0 +1,126 @@
+package ua.lviv.travelagency.dao.impl;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import ua.lviv.travelagency.connection.ConnectionManager;
+import ua.lviv.travelagency.dao.HotelDao;
+import ua.lviv.travelagency.domain.Hotel;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class HotelDaoImpl implements HotelDao {
+
+    private static String CREATE = "insert into hotel(`name`, `rating`, `country`, `city`,`room_count`, `agency_id`) values (?,?,?,?,?,?)";
+    private static String READ_BY_ID = "select * from hotel where id = ?";
+    private static String READ_ALL = "select * from hotel";
+    private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, " +
+                                         "room_count=?, agency_id=?  where id = ?";
+    private static String DELETE_BY_ID = "delete from hotel where id = ?";
+    private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
+
+    @Override
+    public Hotel create(Hotel hotel) {
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection()
+                .prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)){
+            preparedStatement.setString(1, hotel.getName());
+            preparedStatement.setInt(2, hotel.getRating());
+            preparedStatement.setString(3, hotel.getCountry());
+            preparedStatement.setString(4, hotel.getCity());
+            preparedStatement.setInt(5, hotel.getRoom_count());
+            preparedStatement.setInt(6, hotel.getAgencyId());
+            preparedStatement.executeUpdate();
+            try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                hotel.setId(rs.getInt(1));
+            }
+            ConnectionManager.close();
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+
+        return hotel;
+    }
+
+    @Override
+    public Hotel read(Integer id) {
+
+        Hotel hotel = null;
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)){
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            Integer hotelId = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            Integer rating = resultSet.getInt("rating");
+            String country = resultSet.getString("country");
+            String city = resultSet.getString("city");
+            Integer roomCount = resultSet.getInt("room_count");
+            Integer agencyId = resultSet.getInt("agency_id");
+            hotel = new Hotel(hotelId, name, rating, country, city, roomCount, agencyId);
+            ConnectionManager.close();
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+
+
+        return hotel;
+    }
+
+    @Override
+    public Hotel update(Hotel hotel) {
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(UPDATE_BY_ID)){
+            preparedStatement.setString(1, hotel.getName());
+            preparedStatement.setInt(2, hotel.getRating());
+            preparedStatement.setString(3, hotel.getCountry());
+            preparedStatement.setString(4, hotel.getCity());
+            preparedStatement.setInt(5, hotel.getRoom_count());
+            preparedStatement.setInt(6, hotel.getAgencyId());
+            preparedStatement.setInt(7, hotel.getId());
+            preparedStatement.executeUpdate();
+            ConnectionManager.close();
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+
+        return hotel;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(DELETE_BY_ID)){
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            ConnectionManager.close();
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+    }
+
+    @Override
+    public List<Hotel> readAll() {
+        List<Hotel> hotels = new ArrayList<>();
+        try ( PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Integer hotelId = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    Integer rating = resultSet.getInt("rating");
+                    String country = resultSet.getString("country");
+                    String city = resultSet.getString("city");
+                    Integer roomCount = resultSet.getInt("room_count");
+                    Integer agencyId = resultSet.getInt("agency_id");
+                    hotels.add(new Hotel(hotelId, name, rating, country, city, roomCount, agencyId));
+                    ConnectionManager.close();
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+
+        return hotels;
+    }
+}

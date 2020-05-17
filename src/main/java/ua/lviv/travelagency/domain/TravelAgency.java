@@ -1,12 +1,18 @@
 package ua.lviv.travelagency.domain;
 
 public class TravelAgency {
-    private int id;
+    private Integer id;
     private String name;
     private String address;
     private String email;
 
     public TravelAgency() {
+    }
+
+    public TravelAgency(String name, String address, String email) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
     }
 
     public TravelAgency(int id, String name, String address, String email) {
@@ -16,11 +22,11 @@ public class TravelAgency {
         this.email = email;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

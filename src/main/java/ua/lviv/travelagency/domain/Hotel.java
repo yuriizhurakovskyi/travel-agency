@@ -7,18 +7,29 @@ public class Hotel {
     private Integer rating;
     private String country;
     private String city;
-    private Integer roomCount;
+    private Integer room_count;
+    private Integer agencyId;
 
     public Hotel() {
     }
 
-    public Hotel(Integer id, String name, Integer rating, String country, String city, Integer roomCount) {
+    public Hotel(String name, Integer rating, String country, String city, Integer room_count, Integer agencyId) {
+        this.name = name;
+        this.rating = rating;
+        this.country = country;
+        this.city = city;
+        this.room_count = room_count;
+        this.agencyId = agencyId;
+    }
+
+    public Hotel(Integer id, String name, Integer rating, String country, String city, Integer room_count, Integer agencyId) {
         this.id = id;
         this.name = name;
         this.rating = rating;
         this.country = country;
         this.city = city;
-        this.roomCount = roomCount;
+        this.room_count = room_count;
+        this.agencyId = agencyId;
     }
 
     public Integer getId() {
@@ -61,23 +72,19 @@ public class Hotel {
         this.city = city;
     }
 
-    public Integer getRoomCount() {
-        return roomCount;
+    public Integer getRoom_count() {
+        return room_count;
     }
 
-    public void setRoomCount(Integer roomCount) {
-        this.roomCount = roomCount;
+    public void setRoom_count(Integer room_count) {
+        this.room_count = room_count;
     }
 
-    @Override
-    public String toString() {
-        return "Hotel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", rating=" + rating +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", roomCount=" + roomCount +
-                '}';
+    public Integer getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Integer agencyId) {
+        this.agencyId = agencyId;
     }
 }
