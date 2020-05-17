@@ -4,28 +4,31 @@ public class Room {
     private Integer id;
     private Integer capacity;
     private String type;
-    private boolean wifi;
-    private boolean breakfast;
-    private float price;
+    private Boolean wifiIncluded;
+    private Boolean breakfastIncluded;
+    private Double price;
+    private Integer hotelId;
 
     public Room() {
     }
 
-    public Room(Integer capacity, String type, boolean wifi, boolean breakfast, float price) {
+    public Room(Integer capacity, String type, Boolean wifiIncluded, Boolean breakfastIncluded, Double price, Integer hotelId) {
         this.capacity = capacity;
         this.type = type;
-        this.wifi = wifi;
-        this.breakfast = breakfast;
+        this.wifiIncluded = wifiIncluded;
+        this.breakfastIncluded = breakfastIncluded;
         this.price = price;
+        this.hotelId = hotelId;
     }
 
-    public Room(Integer id, Integer capacity, String type, boolean wifi, boolean breakfast, float price) {
+    public Room(Integer id, Integer capacity, String type, Boolean wifiIncluded, Boolean breakfastIncluded, Double price, Integer hotelId) {
         this.id = id;
         this.capacity = capacity;
         this.type = type;
-        this.wifi = wifi;
-        this.breakfast = breakfast;
+        this.wifiIncluded = wifiIncluded;
+        this.breakfastIncluded = breakfastIncluded;
         this.price = price;
+        this.hotelId = hotelId;
     }
 
     public Integer getId() {
@@ -52,28 +55,36 @@ public class Room {
         this.type = type;
     }
 
-    public boolean isWifi() {
-        return wifi;
+    public Boolean getWifiIncluded() {
+        return wifiIncluded;
     }
 
-    public void setWifi(boolean wifi) {
-        this.wifi = wifi;
+    public void setWifiIncluded(Boolean wifiIncluded) {
+        this.wifiIncluded = wifiIncluded;
     }
 
-    public boolean isBreakfast() {
-        return breakfast;
+    public Boolean getBreakfastIncluded() {
+        return breakfastIncluded;
     }
 
-    public void setBreakfast(boolean breakfast) {
-        this.breakfast = breakfast;
+    public void setBreakfastIncluded(Boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
     }
 
     @Override
@@ -82,9 +93,10 @@ public class Room {
                 "id=" + id +
                 ", capacity=" + capacity +
                 ", type='" + type + '\'' +
-                ", wifi=" + wifi +
-                ", breakfast=" + breakfast +
+                ", wifiIncluded=" + wifiIncluded +
+                ", breakfastIncluded=" + breakfastIncluded +
                 ", price=" + price +
+                ", hotelId=" + hotelId +
                 '}';
     }
 }

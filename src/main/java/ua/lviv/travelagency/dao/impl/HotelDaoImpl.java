@@ -18,8 +18,7 @@ public class HotelDaoImpl implements HotelDao {
     private static String CREATE = "insert into hotel(`name`, `rating`, `country`, `city`,`room_count`, `agency_id`) values (?,?,?,?,?,?)";
     private static String READ_BY_ID = "select * from hotel where id = ?";
     private static String READ_ALL = "select * from hotel";
-    private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, " +
-            "room_count=?, agency_id=?  where id = ?";
+    private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, room_count=?, agency_id=?  where id = ?";
     private static String DELETE_BY_ID = "delete from hotel where id = ?";
     private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
 
@@ -35,6 +34,7 @@ public class HotelDaoImpl implements HotelDao {
             preparedStatement.setInt(6, hotel.getAgencyId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                rs.next();
                 hotel.setId(rs.getInt(1));
             }
             ConnectionManager.close();

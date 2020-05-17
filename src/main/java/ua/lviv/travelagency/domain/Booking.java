@@ -3,11 +3,10 @@ package ua.lviv.travelagency.domain;
 import java.util.Date;
 
 public class Booking {
+    private Integer id;
     private Date date;
     private Integer roomId;
     private Integer userId;
-    private Integer id;
-
 
     public Booking() {
     }
@@ -18,11 +17,11 @@ public class Booking {
         this.userId = userId;
     }
 
-    public Booking(Date date, Integer roomId, Integer userId, Integer id) {
+    public Booking(Integer id, Date date, Integer roomId, Integer userId) {
+        this.id = id;
         this.date = date;
         this.roomId = roomId;
         this.userId = userId;
-        this.id = id;
     }
 
     public Integer getId() {
@@ -60,10 +59,10 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", roomId=" + roomId +
                 ", userId=" + userId +
-                ", id=" + id +
                 '}';
     }
 }

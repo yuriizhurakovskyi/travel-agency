@@ -6,29 +6,29 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String password;
     private String role;
+    private String password;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String phoneNumber, String password, String role) {
+    public User(String firstName, String lastName, String email, String phoneNumber, String role, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.role = role;
+        this.password = password;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String phoneNumber, String password, String role) {
+    public User(Integer id, String firstName, String lastName, String email, String phoneNumber, String role, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.role = role;
+        this.password = password;
     }
 
     public String getRole() {
@@ -37,6 +37,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {
@@ -79,14 +87,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -95,6 +95,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
