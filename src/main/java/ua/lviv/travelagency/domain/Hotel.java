@@ -87,4 +87,17 @@ public class Hotel {
     public void setAgencyId(Integer agencyId) {
         this.agencyId = agencyId;
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", room_count=" + room_count +
+                ", agencyId=" + agencyId +
+                '}';
+    }
 }

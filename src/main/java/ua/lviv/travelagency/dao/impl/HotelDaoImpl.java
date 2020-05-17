@@ -19,14 +19,14 @@ public class HotelDaoImpl implements HotelDao {
     private static String READ_BY_ID = "select * from hotel where id = ?";
     private static String READ_ALL = "select * from hotel";
     private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, " +
-                                         "room_count=?, agency_id=?  where id = ?";
+            "room_count=?, agency_id=?  where id = ?";
     private static String DELETE_BY_ID = "delete from hotel where id = ?";
     private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
 
     @Override
     public Hotel create(Hotel hotel) {
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection()
-                .prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)){
+                .prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, hotel.getName());
             preparedStatement.setInt(2, hotel.getRating());
             preparedStatement.setString(3, hotel.getCountry());
@@ -49,7 +49,7 @@ public class HotelDaoImpl implements HotelDao {
     public Hotel read(Integer id) {
 
         Hotel hotel = null;
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -72,7 +72,7 @@ public class HotelDaoImpl implements HotelDao {
 
     @Override
     public Hotel update(Hotel hotel) {
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(UPDATE_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(UPDATE_BY_ID)) {
             preparedStatement.setString(1, hotel.getName());
             preparedStatement.setInt(2, hotel.getRating());
             preparedStatement.setString(3, hotel.getCountry());
@@ -91,7 +91,7 @@ public class HotelDaoImpl implements HotelDao {
 
     @Override
     public void delete(Integer id) {
-        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(DELETE_BY_ID)){
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(DELETE_BY_ID)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             ConnectionManager.close();
@@ -103,7 +103,7 @@ public class HotelDaoImpl implements HotelDao {
     @Override
     public List<Hotel> readAll() {
         List<Hotel> hotels = new ArrayList<>();
-        try ( PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer hotelId = resultSet.getInt("id");
