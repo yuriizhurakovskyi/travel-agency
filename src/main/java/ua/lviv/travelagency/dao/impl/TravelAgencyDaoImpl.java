@@ -102,7 +102,6 @@ public class TravelAgencyDaoImpl implements TravelAgencyDao {
                     String address = resultSet.getString("address");
                     String email = resultSet.getString("email");
                     travelAgencies.add(new TravelAgency(idagency, name, address, email));
-
                 }
             }
             ConnectionManager.close();
