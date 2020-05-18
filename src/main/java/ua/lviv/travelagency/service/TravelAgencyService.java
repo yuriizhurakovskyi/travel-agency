@@ -1,4 +1,7 @@
 package ua.lviv.travelagency.service;
 
-public class TravelAgencyService {
+import ua.lviv.travelagency.domain.TravelAgency;
+import ua.lviv.travelagency.shared.AbstractCRUD;
+
+public interface TravelAgencyService extends AbstractCRUD<TravelAgency> {
 }
