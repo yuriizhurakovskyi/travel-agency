@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `capacity` INT NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `wifi` BOOLEAN NOT NULL,
-  `dinner` BOOLEAN NOT NULL,
+  `breakfast` BOOLEAN NOT NULL,
   `price` DOUBLE NOT NULL,
   `hotel_id` INT NOT NULL,
   PRIMARY KEY (`id`),
