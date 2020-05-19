@@ -1,8 +1,3 @@
-
-function showAlertAfterRegistration() {
-    $('div.alert.alert-success').show();
-}
-
 $(document).ready(function () {
     $("button.register").click(function () {
         let firstName = $("form.register-form input.firstName").val();
@@ -29,8 +24,6 @@ $(document).ready(function () {
             $.post("registration", userRegistration, function (data) {
                 if (data === 'Success') {
                     $("form")[0].reset();
-                    $("form")[1].reset();
-                    showAlertAfterRegistration();
                 }
             });
         }
