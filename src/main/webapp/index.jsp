@@ -6,5 +6,6 @@
 </head>
 <body>
     <a href="login.jsp">login</a>
+    <a href="registration.jsp">registration</a>
 </body>
 </html>
