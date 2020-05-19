@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Index page</title>
+    <title>Manager page</title>
 </head>
 <body>
-    <a href="login.jsp">login</a>
+    <h1>Manager page</h1>
 </body>
 </html>
