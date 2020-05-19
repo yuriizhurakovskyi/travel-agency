@@ -21,7 +21,7 @@
                 <h2 class="title">Registration</h2>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form method="POST" class="register-form">
                     <div class="form-row">
                         <div class="name">First name</div>
                         <div class="value">
@@ -77,5 +77,6 @@
 </div>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/global.js"></script>
+<script src="js/registration.js"></script>
 </body>
 </html>
