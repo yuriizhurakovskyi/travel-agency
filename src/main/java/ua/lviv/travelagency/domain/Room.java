@@ -1,5 +1,7 @@
 package ua.lviv.travelagency.domain;
 
+import java.util.Objects;
+
 public class Room {
     private Integer id;
     private Integer capacity;
@@ -85,6 +87,25 @@ public class Room {
 
     public void setHotelId(Integer hotelId) {
         this.hotelId = hotelId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return Objects.equals(id, room.id) &&
+                Objects.equals(capacity, room.capacity) &&
+                Objects.equals(type, room.type) &&
+                Objects.equals(wifiIncluded, room.wifiIncluded) &&
+                Objects.equals(breakfastIncluded, room.breakfastIncluded) &&
+                Objects.equals(price, room.price) &&
+                Objects.equals(hotelId, room.hotelId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, capacity, type, wifiIncluded, breakfastIncluded, price, hotelId);
     }
 
     @Override

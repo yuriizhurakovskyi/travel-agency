@@ -1,6 +1,7 @@
 package ua.lviv.travelagency.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Booking {
     private Integer id;
@@ -54,6 +55,22 @@ public class Booking {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return Objects.equals(id, booking.id) &&
+                Objects.equals(date, booking.date) &&
+                Objects.equals(roomId, booking.roomId) &&
+                Objects.equals(userId, booking.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, roomId, userId);
     }
 
     @Override
