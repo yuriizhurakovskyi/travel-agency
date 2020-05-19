@@ -1,5 +1,7 @@
 package ua.lviv.travelagency.domain;
 
+import java.util.Objects;
+
 public class User {
     private Integer id;
     private String firstName;
@@ -85,6 +87,25 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(role, user.role) &&
+                Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, phoneNumber, role, password);
     }
 
     @Override

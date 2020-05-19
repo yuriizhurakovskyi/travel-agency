@@ -1,5 +1,7 @@
 package ua.lviv.travelagency.domain;
 
+import java.util.Objects;
+
 public class TravelAgency {
     private Integer id;
     private String name;
@@ -52,6 +54,22 @@ public class TravelAgency {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TravelAgency that = (TravelAgency) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, address, email);
     }
 
     @Override
