@@ -16,6 +16,11 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
     private UserService userService = UserServiceImpl.getUserServiceImpl();
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("registration.jsp").forward(req, resp);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String email = request.getParameter("email");
