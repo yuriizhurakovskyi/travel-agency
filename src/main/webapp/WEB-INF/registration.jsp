@@ -75,8 +75,8 @@
         </div>
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="js/global.js"></script>
-<script src="js/registration.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../js/global.js"></script>
+<script src="../js/registration.js"></script>
 </body>
 </html>
