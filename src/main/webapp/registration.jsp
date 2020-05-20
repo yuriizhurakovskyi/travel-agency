@@ -26,7 +26,8 @@
                         <div class="name">First name</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-6 firstName" type="text" name="firstName" placeholder="First name">
+                                <input class="input--style-6 firstName" type="text" name="firstName"
+                                       placeholder="First name">
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,8 @@
                         <div class="name">Last name</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-6 lastName" type="text" name="lastName" placeholder="Last name">
+                                <input class="input--style-6 lastName" type="text" name="lastName"
+                                       placeholder="Last name">
                             </div>
                         </div>
                     </div>
@@ -42,7 +44,8 @@
                         <div class="name">Email address</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-6 email" type="email" name="email" placeholder="example@email.com">
+                                <input class="input--style-6 email" type="email" name="email"
+                                       placeholder="example@email.com">
                             </div>
                         </div>
                     </div>
@@ -50,7 +53,8 @@
                         <div class="name">Phone number</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-6 phoneNumber" type="text" name="phoneNumber" placeholder="Phone number">
+                                <input class="input--style-6 phoneNumber" type="text" name="phoneNumber"
+                                       placeholder="Phone number">
                             </div>
                         </div>
                     </div>
