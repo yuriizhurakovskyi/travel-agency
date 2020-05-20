@@ -61,7 +61,7 @@ public class BookingDaoImpl implements BookingDao {
 
 
     @Override
-    public List<Booking> readByRoom(Integer roomId){
+    public List<Booking> readByRoom(Integer roomId) {
         List<Booking> bookings = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ROOM)) {
             preparedStatement.setInt(1, roomId);
@@ -81,7 +81,7 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public List<Booking> readByUser(Integer userId){
+    public List<Booking> readByUser(Integer userId) {
         List<Booking> bookings = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_USER)) {
             preparedStatement.setInt(1, userId);

@@ -26,7 +26,8 @@
                         <div class="name">Email address</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-6 email" type="email" name="email" placeholder="example@email.com">
+                                <input class="input--style-6 email" type="email" name="email"
+                                       placeholder="example@email.com">
                             </div>
                         </div>
                     </div>

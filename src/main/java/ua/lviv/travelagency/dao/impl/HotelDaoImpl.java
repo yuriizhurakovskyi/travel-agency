@@ -18,15 +18,15 @@ public class HotelDaoImpl implements HotelDao {
     private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, room_count=?, agency_id=?  where id = ?";
     private static String DELETE_BY_ID = "delete from hotel where id = ?";
     private static String READ_HOTEL_BY_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, hotel.city, " +
-                                    "hotel.room_count, hotel.agency_id from hotel " +
-                                    "inner join room on room.hotel_id = hotel.id " +
-                                    "left join booking on booking.room_id = room.id and booking.date = ?" +
-                                    "where hotel.id = ? and booking.room_id is NULL";
+            "hotel.room_count, hotel.agency_id from hotel " +
+            "inner join room on room.hotel_id = hotel.id " +
+            "left join booking on booking.room_id = room.id and booking.date = ?" +
+            "where hotel.id = ? and booking.room_id is NULL";
     private static String READ_BY_CITY_AND_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, " +
-                                    "hotel.city, hotel.room_count, hotel.agency_id from hotel " +
-                                    "inner join room on room.hotel_id = hotel.id " +
-                                    "left join booking on booking.room_id = room.id and booking.date = ? " +
-                                    "where hotel.city = ? and booking.room_id is NULL";
+            "hotel.city, hotel.room_count, hotel.agency_id from hotel " +
+            "inner join room on room.hotel_id = hotel.id " +
+            "left join booking on booking.room_id = room.id and booking.date = ? " +
+            "where hotel.city = ? and booking.room_id is NULL";
     private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
 
     @Override
@@ -126,7 +126,6 @@ public class HotelDaoImpl implements HotelDao {
         } catch (SQLException e) {
             LOGGER.error(e);
         }
-
 
 
         return hotels;

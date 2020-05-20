@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    #FONT
    ========================================================================== */
@@ -98,11 +97,13 @@
         display: block;
         padding: 24px 30px;
     }
+
     .form-row .name,
     .form-row .value {
         display: block;
         width: 100%;
     }
+
     .form-row .name {
         margin-top: 0;
         margin-bottom: 12px;

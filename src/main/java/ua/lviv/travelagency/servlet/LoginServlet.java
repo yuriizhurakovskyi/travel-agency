@@ -1,10 +1,10 @@
 package ua.lviv.travelagency.servlet;
 
+import com.google.gson.Gson;
 import ua.lviv.travelagency.domain.User;
 import ua.lviv.travelagency.dto.UserLogin;
 import ua.lviv.travelagency.service.UserService;
 import ua.lviv.travelagency.service.impl.UserServiceImpl;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

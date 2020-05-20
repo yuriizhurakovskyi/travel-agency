@@ -6,17 +6,17 @@ $("button.login").click(function () {
         alert("Please fill login form!");
     } else {
         let userLogin = {
-            email : email,
-            password : password
+            email: email,
+            password: password
         };
-        $.post("login", userLogin, function(data) {
-            if(data !== ''){
+        $.post("login", userLogin, function (data) {
+            if (data !== '') {
                 let customUrl = '';
                 let urlContent = window.location.href.split('/');
-                for (let i = 0; i < urlContent.length-1; i++) {
-                    customUrl+=urlContent[i]+'/'
+                for (let i = 0; i < urlContent.length - 1; i++) {
+                    customUrl += urlContent[i] + '/'
                 }
-                customUrl+=data.destinationUrl;
+                customUrl += data.destinationUrl;
                 window.location = customUrl;
             }
             $("form")[1].reset();

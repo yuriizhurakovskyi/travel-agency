@@ -13,7 +13,7 @@ public class BookingServiceImpl implements BookingService {
     private static BookingService bookingServiceImpl;
 
     public static BookingService getBookingServiceImpl() {
-        if(bookingServiceImpl == null)
+        if (bookingServiceImpl == null)
             bookingServiceImpl = new BookingServiceImpl();
         return bookingServiceImpl;
     }
