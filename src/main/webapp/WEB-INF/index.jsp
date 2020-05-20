@@ -5,7 +5,7 @@
     <title>Index page</title>
 </head>
 <body>
-    <a href="login.jsp">login</a>
-    <a href="registration.jsp">registration</a>
+    <a href="login">login</a>
+    <a href="registration">registration</a>
 </body>
 </html>
