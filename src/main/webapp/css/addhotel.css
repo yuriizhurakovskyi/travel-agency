@@ -1,0 +1,14 @@
+form{
+    margin: 50px 10px;
+}
+
+.rating{
+    margin: 10px 0;
+    width: 400px;
+}
+
+#saveHotel{
+    background-color: darkorchid;
+    width: 170px;
+    height: 50px;
+}
