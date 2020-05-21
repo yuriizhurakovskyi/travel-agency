@@ -1,7 +1,10 @@
 package ua.lviv.travelagency.servlet;
 
+import ua.lviv.travelagency.domain.Hotel;
 import ua.lviv.travelagency.domain.Room;
+import ua.lviv.travelagency.service.HotelService;
 import ua.lviv.travelagency.service.RoomService;
+import ua.lviv.travelagency.service.impl.HotelServiceImpl;
 import ua.lviv.travelagency.service.impl.RoomServiceImpl;
 
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/room")
 public class RoomServlet extends HttpServlet {
     private RoomService roomService = RoomServiceImpl.getRoomServiceImpl();
+    private HotelService hotelService = HotelServiceImpl.getHotelServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
@@ -23,6 +27,12 @@ public class RoomServlet extends HttpServlet {
         Integer hotel_id = Integer.parseInt(req.getParameter("hotel_id"));
 
         Room room = new Room(capacity, type, wifi, breakfast, price, hotel_id);
+
+        Hotel hotel = hotelService.read(hotel_id);
+        Integer roomCount = hotel.getRoom_count();
+        hotel.setRoom_count(++roomCount);
+        hotelService.update(hotel);
+
         roomService.create(room);
     }
 }
