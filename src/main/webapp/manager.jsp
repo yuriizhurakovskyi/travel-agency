@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
                 <a href="#"><span class="fa fa-home mr-3"></span> Homepage</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-hotel mr-3"></span>Add Hotels</a>
+                <a href="addhotel"><span class="fa fa-hotel mr-3"></span>Add Hotels</a>
             </li>
             <li>
                 <a href="#"><span class="fa fa-sticky-note mr-3"></span> Statistics</a>
@@ -48,7 +49,7 @@
             anim id est laborum.</p>
     </div>
 </div>
-
+<jsp:include page="footer.jsp"/>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
