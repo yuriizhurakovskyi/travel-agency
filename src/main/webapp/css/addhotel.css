@@ -1,14 +1,19 @@
-form{
+form {
     margin: 50px 10px;
 }
 
-.rating{
+.rating {
     margin: 10px 0;
     width: 400px;
 }
 
-#saveHotel{
-    background-color: darkorchid;
+#saveHotel {
+    background-color: #2f89fc;
     width: 170px;
     height: 50px;
+}
+
+#saveHotel:hover {
+    background-color: #80bdff;
+
 }

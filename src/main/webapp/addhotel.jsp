@@ -42,51 +42,52 @@
 
     </nav>
     <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4">Adding Hotel</h2>
-        <div class="form-group">
-            <label for="hotelName">Hotel name</label>
-            <input type="text" class="form-control" id="hotelName" aria-describedby="hotelName"
-                   placeholder="Enter a hotel name">
-        </div>
-        <div class="rating">
-            Rating: &#160;
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                       value="one">
-                <label class="form-check-label" for="inlineRadio1">1</label>
+        <form method="post" id="myForm">
+            <h2 class="mb-4">Adding Hotel</h2>
+            <div class="form-group">
+                <label for="hotelName">Hotel name</label>
+                <input type="text" class="form-control hotelName" id="hotelName" aria-describedby="hotelName"
+                       placeholder="Enter a hotel name" name="hotelName">
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                       value="two">
-                <label class="form-check-label" for="inlineRadio2">2</label>
+            <div class="rating">
+                Rating: &#160;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio1"
+                           value="1">
+                    <label class="form-check-label" for="inlineRadio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio2"
+                           value="2">
+                    <label class="form-check-label" for="inlineRadio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio3"
+                           value="3">
+                    <label class="form-check-label" for="inlineRadio3">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio4"
+                           value="4">
+                    <label class="form-check-label" for="inlineRadio4">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio5"
+                           value="5">
+                    <label class="form-check-label" for="inlineRadio5">5</label>
+                </div>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                       value="three">
-                <label class="form-check-label" for="inlineRadio3">3</label>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control country" id="country" name="country" aria-describedby="country"
+                       placeholder="Enter a country">
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                       value="four">
-                <label class="form-check-label" for="inlineRadio4">4</label>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control city" name="city" id="city" aria-describedby="city"
+                       placeholder="Enter a city">
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
-                       value="five">
-                <label class="form-check-label" for="inlineRadio5">5</label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" aria-describedby="country"
-                   placeholder="Enter a country">
-        </div>
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control" id="city" aria-describedby="city"
-                   placeholder="Enter a city">
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg" id="saveHotel">Save</button>
+            <button type="submit" class="btn btn-primary btn-lg addhotel" id="saveHotel">Save</button>
         </form>
     </div>
 </div>
@@ -95,5 +96,6 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/addhotel.js"></script>
 </body>
 </html>
