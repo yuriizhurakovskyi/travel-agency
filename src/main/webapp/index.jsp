@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet" />
     <link href="css/searchform.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -39,7 +40,7 @@
         officiis minus laboriosam
     </p>
     <div class="s002"> <!-- This form templates was made by Colorlib (https://colorlib.com) -->
-        <form>
+        <form method="post" action="hotelByCityAndDate">
             <fieldset>
                 <legend>SEARCH HOTEL</legend>
             </fieldset>
@@ -50,7 +51,7 @@
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
                         </svg>
                     </div>
-                    <input id="search" type="text" placeholder="City" />
+                    <input id="search" type="text" placeholder="City" name="city"/>
                 </div>
                 <div class="input-field second-wrap">
                     <div class="icon-wrap">
@@ -58,7 +59,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" />
+                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="date"/>
                 </div>
                 <div class="input-field third-wrap">
                     <div class="icon-wrap">
@@ -83,13 +84,15 @@
                     </select>
                 </div>
                 <div class="input-field fifth-wrap">
-                    <button class="btn-search" type="button">SEARCH</button>
+                    <button class="btn-search" type="submit">SEARCH</button>
                 </div>
             </div>
         </form>
     </div>
+
     <script src="js/extention/choices.js"></script>
     <script src="js/extention/flatpickr.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         flatpickr(".datepicker",
             {});
