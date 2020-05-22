@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/hotelByCityAndDate")
-public class SearchHotelOnCityAndDate extends HttpServlet {
+public class SearchHotelByCityAndDate extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
