@@ -1,14 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Index page</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/result.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet"/>
     <link href="css/searchform.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -16,9 +19,9 @@
 <section class="home">
 </section>
 
-<div style="height: 1000px">
+<div style="height: 300px">
     <div class="s002"> <!-- This form templates was made by Colorlib (https://colorlib.com) -->
-        <form method="post" action="hotelByCityAndDate">
+        <form class="myForm" method="post" action="hotelByCityAndDate">
             <fieldset>
                 <legend>SEARCH HOTEL</legend>
             </fieldset>
@@ -67,7 +70,21 @@
             </div>
         </form>
     </div>
-
+    <div class="myDiv">
+        <c:forEach items="${hotels}" var="hotel">
+            <div class="card w-75 myCard" id="${hotel.id}">
+                <div class="card-body">
+                    <h1 class="card-title">Name: ${hotel.name}</h1>
+                    <p class="card-text">Rating: ${hotel.rating}/5</p>
+                    <p class="card-text">Country: ${hotel.country}</p>
+                    <p class="card-text">City: ${hotel.city}</p>
+                    <p class="card-text">Count of rooms: ${hotel.room_count}</p>
+                    <a href="#" class="btn btn-primary myButton">Rooms</a>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+<br>
     <script src="js/extention/choices.js"></script>
     <script src="js/extention/flatpickr.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -86,6 +103,8 @@
     </script>
 </div>
 <jsp:include page="footer.jsp"/>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>

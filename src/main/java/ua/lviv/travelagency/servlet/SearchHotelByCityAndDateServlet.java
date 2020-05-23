@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/hotelByCityAndDate")
-public class SearchHotelByCityAndDate extends HttpServlet {
+public class SearchHotelByCityAndDateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +31,9 @@ public class SearchHotelByCityAndDate extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         HotelService hotelService = HotelServiceImpl.getHotelServiceImpl();
         List<Hotel> hotels = hotelService.readByCityAndDate(city.trim(), dateSql);
-
-        req.setAttribute("hotels", hotels);
-        req.getRequestDispatcher("inxdex.jsp").forward(req, resp);
+        req.getSession().setAttribute("hotels", hotels);
+        resp.sendRedirect("result");
     }
 }
