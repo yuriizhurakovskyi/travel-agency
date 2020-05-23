@@ -9,5 +9,5 @@ import java.util.List;
 public interface HotelService extends AbstractCRUD<Hotel> {
     List<Hotel> readByHotelAndDate(Integer hotelId, Date date);
 
-    List<Hotel> readByCityAndDate(String city, Date date);
+    List<Hotel> readByCityAndDate(String city, Date startDate, Date endDate);
 }

@@ -5,6 +5,7 @@ import ua.lviv.travelagency.dao.impl.RoomDaoImpl;
 import ua.lviv.travelagency.domain.Room;
 import ua.lviv.travelagency.service.RoomService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class RoomServiceImpl implements RoomService {
@@ -45,5 +46,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> readAll() {
         return roomDao.readAll();
+    }
+
+    @Override
+    public List<Room> readRoomsByHotelAndDates(Integer id, Date starDate, Date endDate) {
+        return roomDao.readRoomsByHotelAndDates(id, starDate, endDate);
     }
 }

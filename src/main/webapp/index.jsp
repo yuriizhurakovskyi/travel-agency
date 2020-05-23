@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet"/>
     <link href="css/searchform.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -37,7 +38,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="date"/>
+                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="startDate"/>
                 </div>
                 <div class="input-field third-wrap">
                     <div class="icon-wrap">
@@ -45,7 +46,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="return" type="text" placeholder="30 Aug 2018"/>
+                    <input class="datepicker" id="return" type="text" placeholder="30 Aug 2018" name="endDate"/>
                 </div>
                 <div class="input-field fouth-wrap">
                     <div class="icon-wrap">
@@ -86,6 +87,8 @@
     </script>
 </div>
 <jsp:include page="footer.jsp"/>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
