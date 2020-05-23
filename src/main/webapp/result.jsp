@@ -40,7 +40,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="date"/>
+                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="startDate"/>
                 </div>
                 <div class="input-field third-wrap">
                     <div class="icon-wrap">
@@ -48,7 +48,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="return" type="text" placeholder="30 Aug 2018"/>
+                    <input class="datepicker" id="return" type="text" placeholder="30 Aug 2018" name="endDate"/>
                 </div>
                 <div class="input-field fouth-wrap">
                     <div class="icon-wrap">
@@ -79,12 +79,13 @@
                     <p class="card-text">Country: ${hotel.country}</p>
                     <p class="card-text">City: ${hotel.city}</p>
                     <p class="card-text">Count of rooms: ${hotel.room_count}</p>
-                    <a href="#" class="btn btn-primary myButton">Rooms</a>
+                    <a href="/travel_agency_war_exploded/hotelDetails?id=${hotel.id}&startDate=${startDate}&endDate=${endDate}"
+                       class="btn btn-primary myButton">Rooms</a>
                 </div>
             </div>
         </c:forEach>
     </div>
-<br>
+    <br>
     <script src="js/extention/choices.js"></script>
     <script src="js/extention/flatpickr.js"></script>
     <script src="js/bootstrap.min.js"></script>

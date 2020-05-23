@@ -6,11 +6,9 @@ import ua.lviv.travelagency.connection.ConnectionManager;
 import ua.lviv.travelagency.dao.RoomDao;
 import ua.lviv.travelagency.domain.Room;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RoomDaoImpl implements RoomDao {
@@ -19,6 +17,9 @@ public class RoomDaoImpl implements RoomDao {
     private static String READ_ALL = "select * from room";
     private static String UPDATE_BY_ID = "update room set capacity=?, type=?, wifi=?, breakfast=?, price=?, hotel_id=?  where id = ?";
     private static String DELETE_BY_ID = "delete from room where id=?";
+    private static String READ_ROOM_BY_HOTEL_ID = "select * from room " +
+            "left join booking on booking.room_id = room.id and booking.date between ? and ? " +
+            "where room.hotel_id = ? and booking.room_id is NULL and booking.date between ? and ? is NULL;";
     private static Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
 
     @Override
@@ -96,6 +97,33 @@ public class RoomDaoImpl implements RoomDao {
     public List<Room> readAll() {
         List<Room> rooms = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    Integer roomId = result.getInt("id");
+                    Integer capacity = result.getInt("capacity");
+                    String type = result.getString("type");
+                    Boolean wifi = result.getBoolean("wifi");
+                    Boolean breakfast = result.getBoolean("breakfast");
+                    Double price = result.getDouble("price");
+                    Integer hotelId = result.getInt("hotel_id");
+                    rooms.add(new Room(roomId, capacity, type, wifi, breakfast, price, hotelId));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return rooms;
+    }
+
+    @Override
+    public List<Room> readRoomsByHotelAndDates(Integer id, Date startDate, Date endDate) {
+        List<Room> rooms = new ArrayList<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ROOM_BY_HOTEL_ID)) {
+            preparedStatement.setDate(1, startDate);
+            preparedStatement.setDate(2, endDate);
+            preparedStatement.setInt(3, id);
+            preparedStatement.setDate(4, startDate);
+            preparedStatement.setDate(5, endDate);
             try (ResultSet result = preparedStatement.executeQuery()) {
                 while (result.next()) {
                     Integer roomId = result.getInt("id");

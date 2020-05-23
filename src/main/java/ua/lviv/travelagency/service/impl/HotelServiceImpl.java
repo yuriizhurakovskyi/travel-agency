@@ -54,7 +54,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> readByCityAndDate(String city, Date date) {
-        return hotelDao.readByCityAndDate(city, date);
+    public List<Hotel> readByCityAndDate(String city, Date startDate, Date endDate) {
+        return hotelDao.readByCityAndDate(city, startDate, endDate);
     }
 }

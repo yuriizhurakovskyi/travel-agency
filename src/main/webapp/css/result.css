@@ -11,6 +11,10 @@ div a.myButton:hover {
     background-color: #686868;
 }
 
+.containerRoom {
+    position: relative;
+}
+
 div.myCard {
     margin-bottom: 20px;
     border: 0;

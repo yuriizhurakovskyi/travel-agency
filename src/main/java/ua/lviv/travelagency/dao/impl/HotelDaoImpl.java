@@ -22,11 +22,10 @@ public class HotelDaoImpl implements HotelDao {
                                     "inner join room on room.hotel_id = hotel.id " +
                                     "left join booking on booking.room_id = room.id and booking.date = ?" +
                                     "where hotel.id = ? and booking.room_id is NULL";
-    private static String READ_BY_CITY_AND_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, " +
-                                    "hotel.city, hotel.room_count, hotel.agency_id from hotel " +
-                                    "inner join room on room.hotel_id = hotel.id " +
-                                    "left join booking on booking.room_id = room.id and booking.date = ? " +
-                                    "where hotel.city = ? and booking.room_id is NULL";
+    private static String READ_BY_CITY_AND_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, hotel.city, hotel.room_count, hotel.agency_id from hotel " +
+                                                  "inner join room on room.hotel_id = hotel.id " +
+                                                  "left join booking on booking.room_id = room.id and booking.date between ? and ? " +
+                                                  "where hotel.city = ? and booking.room_id is NULL and booking.date between ? and ?  is NULL;";
     private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
 
     @Override
@@ -158,11 +157,14 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public List<Hotel> readByCityAndDate(String city, Date date) {
+    public List<Hotel> readByCityAndDate(String city, Date startDate, Date endDate) {
         List<Hotel> hotels = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_CITY_AND_DATE)) {
-            preparedStatement.setDate(1, date);
-            preparedStatement.setString(2, city);
+            preparedStatement.setDate(1, startDate);
+            preparedStatement.setDate(2, endDate);
+            preparedStatement.setString(3, city);
+            preparedStatement.setDate(4, startDate);
+            preparedStatement.setDate(5, endDate);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer hotel_Id = resultSet.getInt("id");
