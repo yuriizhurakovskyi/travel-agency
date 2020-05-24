@@ -57,4 +57,14 @@ public class HotelServiceImpl implements HotelService {
     public List<Hotel> readByCityAndDate(String city, Date startDate, Date endDate) {
         return hotelDao.readByCityAndDate(city, startDate, endDate);
     }
+
+    @Override
+    public List<String> readAllCitiesAndCountries() {
+        return hotelDao.readAllCitiesAndCountries();
+    }
+
+    @Override
+    public List<Hotel> readByCountryAndCity(String country, String city) {
+        return hotelDao.readByCountryAndCity(country, city);
+    }
 }

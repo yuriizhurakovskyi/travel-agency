@@ -17,8 +17,7 @@
 
 <section class="home">
 </section>
-
-<div style="height: 1000px">
+<div style="height: 1000px" class="content">
     <div class="s002"> <!-- This form templates was made by Colorlib (https://colorlib.com) -->
         <form method="post" action="hotelByCityAndDate">
             <fieldset>
@@ -39,7 +38,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" name="startDate"/>
+                    <input class="datepicker" id="depart" type="text" placeholder="2020-05-22" name="startDate"/>
                 </div>
                 <div class="input-field third-wrap">
                     <div class="icon-wrap">
@@ -47,7 +46,7 @@
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
                         </svg>
                     </div>
-                    <input class="datepicker" id="return" type="text" placeholder="30 Aug 2018" name="endDate"/>
+                    <input class="datepicker" id="return" type="text" placeholder="2020-05-23" name="endDate"/>
                 </div>
                 <div class="input-field fouth-wrap">
                     <div class="icon-wrap">
@@ -69,24 +68,24 @@
             </div>
         </form>
     </div>
-
-    <script src="js/extention/choices.js"></script>
-    <script src="js/extention/flatpickr.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-        flatpickr(".datepicker",
-            {});
-
-    </script>
-    <script>
-        const choices = new Choices('[data-trigger]',
-            {
-                searchEnabled: false,
-                itemSelectText: '',
-            });
-
-    </script>
 </div>
+
+<script src="js/extention/choices.js"></script>
+<script src="js/extention/flatpickr.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    flatpickr(".datepicker",
+        {});
+
+</script>
+<script>
+    const choices = new Choices('[data-trigger]',
+        {
+            searchEnabled: false,
+            itemSelectText: '',
+        });
+
+</script>
 <jsp:include page="footer.jsp"/>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"

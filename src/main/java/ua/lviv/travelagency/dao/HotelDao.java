@@ -10,4 +10,8 @@ public interface HotelDao extends AbstractCRUD<Hotel> {
     List<Hotel> readByHotelAndDate(Integer hotelId, Date date);
 
     List<Hotel> readByCityAndDate(String city, Date startDate, Date endDate);
+
+    List<String> readAllCitiesAndCountries();
+
+    List<Hotel> readByCountryAndCity(String country, String city);
 }
