@@ -1,3 +1,16 @@
+select {
+    width: 70%;
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: dimgrey;
+    color: white;
+}
+
+#showHotels {
+    cursor: pointer;
+    color: navy;
+}
+
 div a.myButton {
     height: 50px;
     width: 150px;
@@ -21,7 +34,7 @@ div.myCard {
     margin-left: 0;
 }
 
-body{
+body {
     background-image: url("../images/christian-lambert-vmIWr0NnpCQ-unsplash.png");
 }
 

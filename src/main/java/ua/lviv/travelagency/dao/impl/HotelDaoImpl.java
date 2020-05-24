@@ -18,14 +18,16 @@ public class HotelDaoImpl implements HotelDao {
     private static String UPDATE_BY_ID = "update hotel set name=?, rating=?, country=?, city=?, room_count=?, agency_id=?  where id = ?";
     private static String DELETE_BY_ID = "delete from hotel where id = ?";
     private static String READ_HOTEL_BY_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, hotel.city, " +
-                                    "hotel.room_count, hotel.agency_id from hotel " +
-                                    "inner join room on room.hotel_id = hotel.id " +
-                                    "left join booking on booking.room_id = room.id and booking.date = ?" +
-                                    "where hotel.id = ? and booking.room_id is NULL";
+            "hotel.room_count, hotel.agency_id from hotel " +
+            "inner join room on room.hotel_id = hotel.id " +
+            "left join booking on booking.room_id = room.id and booking.date = ?" +
+            "where hotel.id = ? and booking.room_id is NULL";
     private static String READ_BY_CITY_AND_DATE = "select distinct hotel.id, hotel.name, hotel.rating, hotel.country, hotel.city, hotel.room_count, hotel.agency_id from hotel " +
-                                                  "inner join room on room.hotel_id = hotel.id " +
-                                                  "left join booking on booking.room_id = room.id and booking.date between ? and ? " +
-                                                  "where hotel.city = ? and booking.room_id is NULL and booking.date between ? and ?  is NULL;";
+            "inner join room on room.hotel_id = hotel.id " +
+            "left join booking on booking.room_id = room.id and booking.date between ? and ? " +
+            "where hotel.city = ? and booking.room_id is NULL and booking.date between ? and ?  is NULL;";
+    private static String READ_ALL_CITIES_AND_COUNTRIES = "select distinct hotel.country, hotel.city from hotel";
+    private static String READ_BY_COUNTRY_AND_CITY = "select * from hotel where hotel.country=? and hotel.city=?";
     private static Logger LOGGER = LogManager.getLogger(HotelDaoImpl.class);
 
     @Override
@@ -53,20 +55,20 @@ public class HotelDaoImpl implements HotelDao {
 
     @Override
     public Hotel read(Integer id) {
-
         Hotel hotel = null;
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ID)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            Integer hotelId = resultSet.getInt("id");
-            String name = resultSet.getString("name");
-            Integer rating = resultSet.getInt("rating");
-            String country = resultSet.getString("country");
-            String city = resultSet.getString("city");
-            Integer roomCount = resultSet.getInt("room_count");
-            Integer agencyId = resultSet.getInt("agency_id");
-            hotel = new Hotel(hotelId, name, rating, country, city, roomCount, agencyId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                Integer hotelId = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                Integer rating = resultSet.getInt("rating");
+                String country = resultSet.getString("country");
+                String city = resultSet.getString("city");
+                Integer roomCount = resultSet.getInt("room_count");
+                Integer agencyId = resultSet.getInt("agency_id");
+                hotel = new Hotel(hotelId, name, rating, country, city, roomCount, agencyId);
+            }
             ConnectionManager.close();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -127,7 +129,6 @@ public class HotelDaoImpl implements HotelDao {
         }
 
 
-
         return hotels;
     }
 
@@ -175,6 +176,49 @@ public class HotelDaoImpl implements HotelDao {
                     Integer roomCount = resultSet.getInt("room_count");
                     Integer agencyId = resultSet.getInt("agency_id");
                     hotels.add(new Hotel(hotel_Id, name, rating, country, cityName, roomCount, agencyId));
+                }
+                ConnectionManager.close();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return hotels;
+    }
+
+    @Override
+    public List<String> readAllCitiesAndCountries() {
+        List<String> countriesAndCities = new ArrayList<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL_CITIES_AND_COUNTRIES)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String country = resultSet.getString("country");
+                    String city = resultSet.getString("city");
+                    countriesAndCities.add(city + ", " + country);
+                }
+                ConnectionManager.close();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return countriesAndCities;
+    }
+
+    @Override
+    public List<Hotel> readByCountryAndCity(String country, String city) {
+        List<Hotel> hotels = new ArrayList<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_COUNTRY_AND_CITY)) {
+            preparedStatement.setString(1, country);
+            preparedStatement.setString(2, city);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Integer hotelId = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    Integer rating = resultSet.getInt("rating");
+                    String _country = resultSet.getString("country");
+                    String _city = resultSet.getString("city");
+                    Integer roomCount = resultSet.getInt("room_count");
+                    Integer agencyId = resultSet.getInt("agency_id");
+                    hotels.add(new Hotel(hotelId, name, rating, _country, _city, roomCount, agencyId));
                 }
                 ConnectionManager.close();
             }
