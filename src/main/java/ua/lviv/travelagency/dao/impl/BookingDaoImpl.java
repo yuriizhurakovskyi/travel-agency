@@ -61,7 +61,7 @@ public class BookingDaoImpl implements BookingDao {
 
 
     @Override
-    public List<Booking> readByRoom(Integer roomId){
+    public List<Booking> readByRoom(Integer roomId) {
         List<Booking> bookings = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_ROOM)) {
             preparedStatement.setInt(1, roomId);
@@ -81,7 +81,7 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public List<Booking> readByUser(Integer userId){
+    public List<Booking> readByUser(Integer userId) {
         List<Booking> bookings = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_BY_USER)) {
             preparedStatement.setInt(1, userId);
@@ -98,6 +98,37 @@ public class BookingDaoImpl implements BookingDao {
             LOGGER.error(e);
         }
         return bookings;
+    }
+
+    @Override
+    public void createBooking(List<Booking> bookings) {
+        /*
+        try {
+            ConnectionManager.getConnection().setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(CREATE,
+                Statement.RETURN_GENERATED_KEYS)) {
+            for (Booking booking : bookings) {
+                preparedStatement.setDate(1, new Date(booking.getDate().getTime()));
+                preparedStatement.setInt(2, booking.getRoomId());
+                preparedStatement.setInt(3, booking.getUserId());
+
+                try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                    rs.next();
+                    booking.setId(rs.getInt(1));
+                }
+
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+            ConnectionManager.getConnection().commit();
+
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        */
     }
 
     @Override

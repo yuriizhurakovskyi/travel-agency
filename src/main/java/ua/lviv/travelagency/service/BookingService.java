@@ -9,4 +9,6 @@ public interface BookingService extends AbstractCRUD<Booking> {
     List<Booking> readByRoom(Integer roomId);
 
     List<Booking> readByUser(Integer userId);
+
+    void createBooking(List<Booking> bookings);
 }
