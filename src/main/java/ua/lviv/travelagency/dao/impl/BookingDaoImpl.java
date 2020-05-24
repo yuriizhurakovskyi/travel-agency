@@ -102,6 +102,7 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public void createBooking(List<Booking> bookings) {
+        /*
         try {
             ConnectionManager.getConnection().setAutoCommit(false);
         } catch (SQLException e) {
@@ -127,6 +128,7 @@ public class BookingDaoImpl implements BookingDao {
         } catch (SQLException e) {
             LOGGER.error(e);
         }
+        */
     }
 
     @Override
