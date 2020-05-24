@@ -24,7 +24,8 @@
                 <p class="card-text">Wifi: ${room.wifiIncluded ? "Included" : "Not included"}</p>
                 <p class="card-text">Breakfast: ${room.breakfastIncluded ? "Included" : "Not included"}</p>
                 <p class="card-text">Price: ${room.price}</p>
-                <a href="#" class="btn btn-primary myButton">Reserve</a>
+                <a href="/travel_agency_war_exploded/reserveRoom?id=${room.id}&startDate=${startDate}&endDate=${endDate}"
+                   class="btn btn-primary myButton">Reserve</a>
             </div>
         </div>
     </c:forEach>

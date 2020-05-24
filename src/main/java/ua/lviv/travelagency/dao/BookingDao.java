@@ -11,4 +11,5 @@ public interface BookingDao extends AbstractCRUD<Booking> {
 
     List<Booking> readByUser(Integer userId);
 
+    void createBooking(List<Booking> bookings);
 }
