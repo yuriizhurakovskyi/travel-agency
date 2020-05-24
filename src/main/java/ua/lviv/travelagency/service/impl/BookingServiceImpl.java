@@ -56,4 +56,9 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> readByUser(Integer userId) {
         return bookingDao.readByUser(userId);
     }
+
+    @Override
+    public void createBooking(List<Booking> bookings) {
+        bookingDao.createBooking(bookings);
+    }
 }

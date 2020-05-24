@@ -24,16 +24,8 @@ public class SearchHotelByCityAndDateServlet extends HttpServlet {
         String city = req.getParameter("city");
         String startDateStr = req.getParameter("startDate");
         String endDateStr = req.getParameter("endDate");
-        java.sql.Date startDateSql = null;
-        java.sql.Date endDateSql = null;
-        try {
-            Date startDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(startDateStr);
-            Date endDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(endDateStr);
-            startDateSql = new java.sql.Date(startDate.getTime());
-            endDateSql = new java.sql.Date(endDate.getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        java.sql.Date startDateSql = dateInSql(startDateStr);
+        java.sql.Date endDateSql = dateInSql(endDateStr);
 
         HotelService hotelService = HotelServiceImpl.getHotelServiceImpl();
         List<Hotel> hotels = hotelService.readByCityAndDate(city.trim(), startDateSql, endDateSql);
@@ -43,5 +35,16 @@ public class SearchHotelByCityAndDateServlet extends HttpServlet {
         req.setAttribute("hotels", hotels);
 
         req.getRequestDispatcher("result.jsp").forward(req, resp);
+    }
+
+    public static java.sql.Date dateInSql(String dateStr) {
+        java.sql.Date date = null;
+        try {
+            Date startDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateStr);
+            date = new java.sql.Date(startDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
