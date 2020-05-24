@@ -3,7 +3,6 @@ package ua.lviv.travelagency.dao;
 import ua.lviv.travelagency.domain.Booking;
 import ua.lviv.travelagency.shared.AbstractCRUD;
 
-import java.awt.print.Book;
 import java.sql.Date;
 import java.util.List;
 
