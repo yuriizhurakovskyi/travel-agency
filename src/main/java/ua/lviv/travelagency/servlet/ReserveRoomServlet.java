@@ -15,8 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/reserveRoom")
@@ -46,7 +44,6 @@ public class ReserveRoomServlet extends HttpServlet {
 
             LocalDate start = startDateUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate end = endDateUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            List<Booking> bookingToInsert = new LinkedList<>();
 
             for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
                 Date reserveDate = Date.valueOf(date);

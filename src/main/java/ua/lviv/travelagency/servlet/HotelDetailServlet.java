@@ -29,6 +29,6 @@ public class HotelDetailServlet extends HttpServlet {
         req.setAttribute("rooms", rooms);
         req.setAttribute("startDate", startDateStr);
         req.setAttribute("endDate", endDateStr);
-        req.getRequestDispatcher("hotelDetails.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/hotelDetails.jsp").forward(req, resp);
     }
 }

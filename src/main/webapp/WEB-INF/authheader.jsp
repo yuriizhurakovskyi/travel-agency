@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <nav class="nav">
     <div class="container">
         <div class="logo">
@@ -20,7 +21,7 @@
 </nav>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
+<script src="${pageContext.request.contextPath}/js/scripts.js"></script>
 
 <!-- Function used to shrink nav bar removing paddings and adding black background -->
 <script>

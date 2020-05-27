@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet({"/index", "/"})
+@WebServlet("/index")
 public class MainServlet extends HttpServlet {
 
     @Override
@@ -19,6 +19,6 @@ public class MainServlet extends HttpServlet {
         } else {
             req.setAttribute("userLogged", "yes");
         }
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
     }
 }

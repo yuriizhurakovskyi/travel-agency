@@ -41,6 +41,6 @@ public class StatisticServlet extends HttpServlet {
         req.setAttribute("clientCount", clientCountInHotels);
         req.setAttribute("hotels", hotels);
         req.setAttribute("averageUsage", mapAverageUsage);
-        req.getRequestDispatcher("statistic.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/statistic.jsp").forward(req, resp);
     }
 }

@@ -22,7 +22,7 @@ public class HotelServlet extends HttpServlet {
         List<String> citiesAndCountries = hotelService.readAllCitiesAndCountries();
         citiesAndCountries.sort(String::compareTo);
         req.setAttribute("citiesAndCountries", citiesAndCountries);
-        req.getRequestDispatcher("hotels.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/hotels.jsp").forward(req, resp);
     }
 
     @Override

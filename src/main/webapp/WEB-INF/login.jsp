@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
           rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet" media="all">
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" media="all">
 </head>
 <body>
 <div class="page-wrapper bg-dark p-t-100 p-b-50">
@@ -48,8 +49,8 @@
         </div>
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="js/global.js"></script>
-<script src="js/login.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/global.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

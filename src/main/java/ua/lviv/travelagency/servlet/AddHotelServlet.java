@@ -18,7 +18,7 @@ public class AddHotelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("addhotel.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/addhotel.jsp").forward(req, resp);
     }
 
     @Override
