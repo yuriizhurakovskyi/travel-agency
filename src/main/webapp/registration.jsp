@@ -14,6 +14,9 @@
     <link href="css/main.css" rel="stylesheet" media="all">
 </head>
 <body>
+<ul style="background-color: #1a1a1a; color: white; font-size: 30px">
+    <li><a href="index" style="background-color: #1a1a1a; color: white; font-size: 30px; text-decoration: none">Home</a></li>
+</ul>
 <div class="page-wrapper bg-dark p-t-100 p-b-50">
     <div class="wrapper wrapper--w900">
         <div class="card card-6">

@@ -12,7 +12,15 @@
     <link rel="stylesheet" href="css/result.css">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<c:choose>
+    <c:when test="${userLogged=='yes'}">
+        <jsp:include page="authheader.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="header.jsp"/>
+    </c:otherwise>
+</c:choose>
+
 <section class="home">
 </section>
 <div class="myDiv" style="margin-top: 90px">

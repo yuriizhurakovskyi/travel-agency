@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="nav">
     <div class="container">
         <div class="logo">
@@ -25,7 +26,7 @@
 
 <!-- Function used to shrink nav bar removing paddings and adding black background -->
 <script>
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(document).scrollTop() > 50) {
             $('.nav').addClass('affix');
             console.log("OK");

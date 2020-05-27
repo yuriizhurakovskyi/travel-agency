@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/registration")
@@ -22,19 +23,24 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
         String email = request.getParameter("email");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
         String phoneNumber = request.getParameter("phoneNumber");
 
+        User user = null;
         if (!email.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()) {
-            userService.create(new User(firstName, lastName, email, phoneNumber, Role.USER.toString(), password));
+            user = userService.create(new User(firstName, lastName, email, phoneNumber, Role.USER.toString(), password));
+        }
+        HttpSession session = request.getSession(true);
+        if (user != null) {
+            session.setAttribute("userId", user.getId());
+            session.setAttribute("role", user.getRole());
         }
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("Success");
-        response.sendRedirect("index");
     }
 }

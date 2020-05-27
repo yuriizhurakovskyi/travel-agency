@@ -14,7 +14,15 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<c:choose>
+    <c:when test="${userLogged=='yes'}">
+        <jsp:include page="authheader.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="header.jsp"/>
+    </c:otherwise>
+</c:choose>
+
 
 <section class="home">
 </section>
