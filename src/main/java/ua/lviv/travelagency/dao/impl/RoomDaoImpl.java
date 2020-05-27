@@ -7,8 +7,8 @@ import ua.lviv.travelagency.dao.RoomDao;
 import ua.lviv.travelagency.domain.Room;
 import ua.lviv.travelagency.servlet.SearchHotelByCityAndDateServlet;
 
-import java.sql.*;
 import java.sql.Date;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -29,6 +29,7 @@ public class RoomDaoImpl implements RoomDao {
             "inner join room on room.id = booking.room_id " +
             "inner join hotel on hotel.id = room.hotel_id " +
             "group by hotel.id";
+    private static String READ_ROOMS_BY_HOTEL_ID = "select * from room where room.hotel_id=?";
     private static Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
 
     @Override
@@ -106,6 +107,29 @@ public class RoomDaoImpl implements RoomDao {
     public List<Room> readAll() {
         List<Room> rooms = new ArrayList<>();
         try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ALL)) {
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    Integer roomId = result.getInt("id");
+                    Integer capacity = result.getInt("capacity");
+                    String type = result.getString("type");
+                    Boolean wifi = result.getBoolean("wifi");
+                    Boolean breakfast = result.getBoolean("breakfast");
+                    Double price = result.getDouble("price");
+                    Integer hotelId = result.getInt("hotel_id");
+                    rooms.add(new Room(roomId, capacity, type, wifi, breakfast, price, hotelId));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return rooms;
+    }
+
+    @Override
+    public List<Room> readRoomsByHotelId(Integer hotel_id) {
+        List<Room> rooms = new ArrayList<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ROOMS_BY_HOTEL_ID)) {
+            preparedStatement.setInt(1, hotel_id);
             try (ResultSet result = preparedStatement.executeQuery()) {
                 while (result.next()) {
                     Integer roomId = result.getInt("id");

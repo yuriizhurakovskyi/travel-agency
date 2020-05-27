@@ -98,7 +98,6 @@
         </form>
     </div>
 </div>
-<jsp:include page="footer.jsp"/>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>

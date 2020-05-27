@@ -1,10 +1,11 @@
 package ua.lviv.travelagency.servlet;
 
+import com.google.gson.Gson;
+import ua.lviv.travelagency.domain.Role;
 import ua.lviv.travelagency.domain.User;
 import ua.lviv.travelagency.dto.UserLogin;
 import ua.lviv.travelagency.service.UserService;
 import ua.lviv.travelagency.service.impl.UserServiceImpl;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userId", user.getId());
             session.setAttribute("role", user.getRole());
             UserLogin userLogin = new UserLogin();
-            userLogin.destinationUrl = "manager.jsp";
+            if (user.getRole().equals(Role.MANAGER.name()))
+                userLogin.destinationUrl = "manager";
+            else userLogin.destinationUrl = "index";
             userLogin.userEmail = user.getEmail();
             String json = new Gson().toJson(userLogin);
             resp.setContentType("application/json");

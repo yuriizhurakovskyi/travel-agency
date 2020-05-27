@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `room`
     `price`     DOUBLE      NOT NULL,
     `hotel_id`  INT         NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`)
+    CONSTRAINT `hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`) ON DELETE CASCADE
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `booking`
     `room_id` INT  NOT NULL,
     `user_id` INT  NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`),
-    CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+    CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
