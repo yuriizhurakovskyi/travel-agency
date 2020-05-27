@@ -7,6 +7,7 @@ import ua.lviv.travelagency.service.RoomService;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public class RoomServiceImpl implements RoomService {
 
@@ -51,5 +52,15 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> readRoomsByHotelAndDates(Integer id, Date starDate, Date endDate) {
         return roomDao.readRoomsByHotelAndDates(id, starDate, endDate);
+    }
+
+    @Override
+    public Map<Integer, Integer> readRoomUsage(Integer hotelId) {
+        return roomDao.readRoomUsage(hotelId);
+    }
+
+    @Override
+    public Map<String, Integer> readClientCount() {
+        return roomDao.readClientCount();
     }
 }
