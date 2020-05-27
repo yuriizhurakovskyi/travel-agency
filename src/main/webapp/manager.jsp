@@ -27,10 +27,10 @@
                 <a href="#"><span class="fa fa-home mr-3"></span> Homepage</a>
             </li>
             <li>
-                <a href="addhotel"><span class="fa fa-hotel mr-3"></span>Add Hotels</a>
+                <a href="addhotel"><span class="fa fa-hotel mr-3"></span>Add hotels and rooms</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-sticky-note mr-3"></span> Statistics</a>
+                <a href="statistic"><span class="fa fa-sticky-note mr-3"></span> Statistics</a>
             </li>
         </ul>
 

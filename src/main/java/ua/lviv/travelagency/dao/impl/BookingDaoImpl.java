@@ -5,11 +5,12 @@ import org.apache.log4j.Logger;
 import ua.lviv.travelagency.connection.ConnectionManager;
 import ua.lviv.travelagency.dao.BookingDao;
 import ua.lviv.travelagency.domain.Booking;
-import ua.lviv.travelagency.domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookingDaoImpl implements BookingDao {
     private static String CREATE = "insert into booking(`date`, `room_id`, `user_id`) values (?,?,?)";
@@ -19,6 +20,10 @@ public class BookingDaoImpl implements BookingDao {
     private static String READ_ALL = "select * from booking";
     private static String DELETE_BY_ID = "delete from booking where id = ?";
     private static String UPDATE = "update booking SET date=?, room_id=?, user_id=? WHERE id=?";
+    private static String READ_DAYS_BOOKED_COUNT = "select hotel.name, Count(booking.user_id) as reserveCount, count(distinct room.id) as usersCount from booking " +
+            "inner join room on room.id = booking.room_id " +
+            "inner join hotel on hotel.id = room.hotel_id " +
+            "group by hotel.id";
     private static Logger LOGGER = LogManager.getLogger(BookingDaoImpl.class);
 
     @Override
@@ -129,6 +134,28 @@ public class BookingDaoImpl implements BookingDao {
             LOGGER.error(e);
         }
         */
+    }
+
+    @Override
+    public Map<String, List<Integer>> readAllBookedRoomCountFromHotels() {
+        Map<String, List<Integer>> hotelBookedCount = new HashMap<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_DAYS_BOOKED_COUNT)) {
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    String hotelName = result.getString("name");
+                    Integer roomId = result.getInt("reserveCount");
+                    Integer userId = result.getInt("usersCount");
+                    List<Integer> roomAndUserCount = new ArrayList<>();
+                    roomAndUserCount.add(roomId);
+                    roomAndUserCount.add(userId);
+                    hotelBookedCount.put(hotelName, roomAndUserCount);
+
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return hotelBookedCount;
     }
 
     @Override

@@ -5,7 +5,9 @@ import ua.lviv.travelagency.dao.impl.BookingDaoImpl;
 import ua.lviv.travelagency.domain.Booking;
 import ua.lviv.travelagency.service.BookingService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookingServiceImpl implements BookingService {
 
@@ -60,5 +62,15 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void createBooking(List<Booking> bookings) {
         bookingDao.createBooking(bookings);
+    }
+
+    @Override
+    public Map<String, Integer> readAverageReserveTime() {
+        Map<String, Integer> bookedAverageCount = new HashMap<>();
+        Map<String, List<Integer>> mapBookedCountAndUserCount = bookingDao.readAllBookedRoomCountFromHotels();
+        for (String key : mapBookedCountAndUserCount.keySet()) {
+            bookedAverageCount.put(key, (mapBookedCountAndUserCount.get(key).get(0)/mapBookedCountAndUserCount.get(key).get(1)));
+        }
+        return bookedAverageCount;
     }
 }

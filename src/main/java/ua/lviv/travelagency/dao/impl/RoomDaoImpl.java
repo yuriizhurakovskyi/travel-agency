@@ -5,11 +5,12 @@ import org.apache.log4j.Logger;
 import ua.lviv.travelagency.connection.ConnectionManager;
 import ua.lviv.travelagency.dao.RoomDao;
 import ua.lviv.travelagency.domain.Room;
+import ua.lviv.travelagency.servlet.SearchHotelByCityAndDateServlet;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class RoomDaoImpl implements RoomDao {
     private static String CREATE = "insert into room(`capacity`, `type`, `wifi`, `breakfast`, `price`, `hotel_id`) values (?, ?, ?, ?, ?, ?)";
@@ -20,6 +21,14 @@ public class RoomDaoImpl implements RoomDao {
     private static String READ_ROOM_BY_HOTEL_ID = "select * from room " +
             "left join booking on booking.room_id = room.id and booking.date between ? and ? " +
             "where room.hotel_id = ? and booking.room_id is NULL and booking.date between ? and ? is NULL;";
+    private static String READ_ROOM_USAGE = "select room.id, COUNT(room.id) as room_usage from room " +
+            "left join booking on room.id = booking.room_id " +
+            "where hotel_id = ? and booking.date between ? and ? " +
+            "GROUP BY room.id;";
+    private static String READ_USER_COUNT = "select hotel.name, count(distinct room.id) as usersCount from booking " +
+            "inner join room on room.id = booking.room_id " +
+            "inner join hotel on hotel.id = room.hotel_id " +
+            "group by hotel.id";
     private static Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
 
     @Override
@@ -140,5 +149,48 @@ public class RoomDaoImpl implements RoomDao {
             LOGGER.error(e);
         }
         return rooms;
+    }
+
+    @Override
+    public Map<Integer, Integer> readRoomUsage(Integer hotelId) {
+        Map<Integer, Integer> usageMap = new HashMap<>();
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = SearchHotelByCityAndDateServlet.dateInSql(sdf.format(cal.getTime()));
+        cal.add(Calendar.DAY_OF_MONTH, 30);
+        Date endDate = SearchHotelByCityAndDateServlet.dateInSql(sdf.format(cal.getTime()));
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_ROOM_USAGE)) {
+            preparedStatement.setInt(1, hotelId);
+            preparedStatement.setDate(2, startDate);
+            preparedStatement.setDate(3, endDate);
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    Integer roomId = result.getInt("id");
+                    Integer room_usage = result.getInt("room_usage");
+                    usageMap.put(roomId, room_usage);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return usageMap;
+    }
+
+    @Override
+    public Map<String, Integer> readClientCount() {
+        Map<String, Integer> hotelBookedCount = new HashMap<>();
+        try (PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(READ_USER_COUNT)) {
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    String hotelName = result.getString("name");
+                    Integer userId = result.getInt("usersCount");
+                    hotelBookedCount.put(hotelName, userId);
+
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return hotelBookedCount;
     }
 }
