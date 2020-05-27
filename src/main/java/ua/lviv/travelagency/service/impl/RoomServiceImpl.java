@@ -63,4 +63,9 @@ public class RoomServiceImpl implements RoomService {
     public Map<String, Integer> readClientCount() {
         return roomDao.readClientCount();
     }
+
+    @Override
+    public List<Room> readRoomsByHotelId(Integer hotel_id) {
+        return roomDao.readRoomsByHotelId(hotel_id);
+    }
 }

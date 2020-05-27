@@ -25,7 +25,7 @@
         <h1><a href="index.jsp" class="logo">Travel Agency</a></h1>
         <ul class="list-unstyled components mb-5">
             <li class="active">
-                <a href="#"><span class="fa fa-home mr-3"></span> Homepage</a>
+                <a href="manager"><span class="fa fa-home mr-3"></span> Homepage</a>
             </li>
             <li>
                 <a href="addhotel"><span class="fa fa-hotel mr-3"></span>Add hotels and rooms</a>
@@ -37,25 +37,22 @@
 
     </nav>
     <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4">Hotels:</h2>
-        <c:forEach items="${hotels}" var="hotel">
-            <div class="card w-75 myCard hotelId" id="${hotel.id}">
+        <h2 class="mb-4">Hotel name: ${hotel.name}</h2>
+        <h2 class="mb-4">Rooms:</h2>
+        <c:forEach items="${rooms}" var="room">
+            <div class="card w-75 myCard" id="${room.id}" style="margin: 20px">
                 <div class="card-body">
-                    <h1 class="card-title">Name: ${hotel.name}</h1>
-                    <p class="card-text">Rating: ${hotel.rating}/5</p>
-                    <p class="card-text">Country: ${hotel.country}</p>
-                    <p class="card-text">City: ${hotel.city}</p>
-                    <p class="card-text">Count of rooms: ${hotel.room_count}</p>
-                    <a href="/travel_agency_war_exploded/managerooms?hotelId=${hotel.id}"
-                       class="btn btn-primary">Rooms</a>
-                    <a href="/travel_agency_war_exploded/addroom?hotelId=${hotel.id}" class="btn btn-primary">Add
-                        Rooms</a>
+                    <h1 class="card-title">${room.type}</h1>
+                    <p class="card-text">Capacity: ${room.capacity}</p>
+                    <p class="card-text">Wifi: ${room.wifiIncluded ? "Included" : "Not included"}</p>
+                    <p class="card-text">Breakfast: ${room.breakfastIncluded ? "Included" : "Not included"}</p>
+                    <p class="card-text">Price: ${room.price}</p>
                     <div style="float: right">
-                        <a href="/travel_agency_war_exploded/deleteHotel?hotelId=${hotel.id}" class="btn btn-danger">Delete</a>
+                        <a href="/travel_agency_war_exploded/deleteRoom?roomId=${room.id}&hotelId=${hotel.id}"
+                           class="btn btn-danger">Delete</a>
                         <button class="btn btn-primary updateRooms">Update</button>
                     </div>
                 </div>
-
             </div>
         </c:forEach>
     </div>

@@ -22,7 +22,13 @@ public class RoomServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer hotelId = Integer.parseInt(req.getSession().getAttribute("hotelId").toString());
+        Integer hotelId = null;
+        if (req.getSession().getAttribute("hotelId") != null)
+            hotelId = Integer.parseInt(req.getSession().getAttribute("hotelId").toString());
+        if (req.getParameter("hotelId") != null) {
+            hotelId = Integer.parseInt(req.getParameter("hotelId"));
+            req.getSession().setAttribute("hotelId", hotelId);
+        }
         Hotel hotel = hotelService.read(hotelId);
         req.setAttribute("hotel", hotel);
         req.getRequestDispatcher("addroom.jsp").forward(req, resp);

@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
             String phone = result.getString("phone_number");
             String email = result.getString("email");
             String password = result.getString("password");
-            user = new User(userId, firstName, lastName, role, phone, email, password);
+            user = new User(userId, firstName, lastName, email, phone, role, password);
         } catch (SQLException e) {
             LOGGER.error(e);
         }
@@ -107,7 +107,7 @@ public class UserDaoImpl implements UserDao {
                     String phone = result.getString("phone_number");
                     String email = result.getString("email");
                     String password = result.getString("password");
-                    users.add(new User(userId, firstName, lastName, role, phone, email, password));
+                    users.add(new User(userId, firstName, lastName, email, phone, role, password));
                 }
             }
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class UserDaoImpl implements UserDao {
             String phone = result.getString("phone_number");
             String email_user = result.getString("email");
             String password = result.getString("password");
-            user = new User(userId, firstName, lastName, role, phone, email_user, password);
+            user = new User(userId, firstName, lastName, email_user, phone, role, password);
         } catch (SQLException e) {
             LOGGER.error(e);
         }

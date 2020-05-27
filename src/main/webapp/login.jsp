@@ -42,6 +42,9 @@
             <div class="card-footer">
                 <button class="btn btn--radius-2 btn--blue-2 login" type="submit">Sign In</button>
             </div>
+            <p style="text-align: center; color: white">Don't have an account? &#160;<a href="registration"
+                                                                                        style="text-decoration: none; color: white">Sign
+                Up</a></p>
         </div>
     </div>
 </div>

@@ -13,4 +13,6 @@ public interface RoomService extends AbstractCRUD<Room> {
     Map<Integer, Integer> readRoomUsage(Integer hotelId);
 
     Map<String, Integer> readClientCount();
+
+    List<Room> readRoomsByHotelId(Integer hotel_id);
 }

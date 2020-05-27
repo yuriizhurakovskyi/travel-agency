@@ -76,6 +76,9 @@
             <div class="card-footer">
                 <button class="btn btn--radius-2 btn--blue-2 register" type="submit">Register</button>
             </div>
+            <p style="text-align: center; color: white">Are you already registered? &#160;<a href="login"
+                                                                                             style="text-decoration: none; color: white">Log
+                In</a></p>
         </div>
     </div>
 </div>
