@@ -19,7 +19,7 @@ $("button.login").click(function () {
                 customUrl += data.destinationUrl;
                 window.location = customUrl;
             }
-            $("form")[1].reset();
+            $("form")[0].reset();
         });
     }
 });

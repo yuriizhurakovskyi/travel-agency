@@ -7,8 +7,8 @@
             <ul class="navlinks">
                 <li><a href="index">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Hotels</a></li>
-                <li><a href="login">Logout</a></li>
+                <li><a href="hotels">Hotels</a></li>
+                <li><a href="logout">Logout</a></li>
             </ul>
         </div>
         <span class="navTrigger">
