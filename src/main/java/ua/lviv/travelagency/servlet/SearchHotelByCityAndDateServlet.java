@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,8 +34,13 @@ public class SearchHotelByCityAndDateServlet extends HttpServlet {
         req.setAttribute("startDate", startDateStr);
         req.setAttribute("endDate", endDateStr);
         req.setAttribute("hotels", hotels);
-
-        req.getRequestDispatcher("result.jsp").forward(req, resp);
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            req.setAttribute("userLogged", "no");
+        } else {
+            req.setAttribute("userLogged", "yes");
+        }
+        req.getRequestDispatcher("WEB-INF/result.jsp").forward(req, resp);
     }
 
     public static java.sql.Date dateInSql(String dateStr) {

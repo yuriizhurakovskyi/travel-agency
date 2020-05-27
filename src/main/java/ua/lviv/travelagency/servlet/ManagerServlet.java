@@ -20,7 +20,7 @@ public class ManagerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Hotel> hotels = hotelService.readAll();
         req.setAttribute("hotels", hotels);
-        req.getRequestDispatcher("manager.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/manager.jsp").forward(req, resp);
     }
 
     @Override

@@ -22,6 +22,6 @@ public class DeleteHotelServlet extends HttpServlet {
         hotelService.delete(hotelId);
         List<Hotel> hotels = hotelService.readAll();
         req.setAttribute("hotels", hotels);
-        req.getRequestDispatcher("manager.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/manager.jsp").forward(req, resp);
     }
 }

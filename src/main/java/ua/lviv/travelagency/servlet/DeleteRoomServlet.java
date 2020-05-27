@@ -33,6 +33,6 @@ public class DeleteRoomServlet extends HttpServlet {
         hotelService.update(hotel);
         req.setAttribute("rooms", rooms);
         req.setAttribute("hotel", hotel);
-        req.getRequestDispatcher("managerooms.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/managerooms.jsp").forward(req, resp);
     }
 }

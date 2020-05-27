@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>Index page</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet"/>
-    <link href="css/searchform.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/result.css">
+    <link href="${pageContext.request.contextPath}/css/searchform.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/result.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -53,9 +53,9 @@
     </div>
 </div>
 
-<script src="js/extention/choices.js"></script>
-<script src="js/extention/flatpickr.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/extention/choices.js"></script>
+<script src="${pageContext.request.contextPath}/js/extention/flatpickr.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script>
     flatpickr(".datepicker",
         {});

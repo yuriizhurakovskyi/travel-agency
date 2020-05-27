@@ -27,7 +27,7 @@ public class ManageRoomsServlet  extends HttpServlet {
         Hotel hotel = hotelService.read(hotelId);
         req.setAttribute("rooms", rooms);
         req.setAttribute("hotel", hotel);
-        req.getRequestDispatcher("managerooms.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/managerooms.jsp").forward(req, resp);
 
     }
 }

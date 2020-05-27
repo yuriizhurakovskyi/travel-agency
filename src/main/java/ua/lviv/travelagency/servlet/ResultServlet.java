@@ -16,6 +16,6 @@ public class ResultServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Hotel> hotels = (List<Hotel>) req.getSession().getAttribute("hotels");
         req.setAttribute("hotels", hotels);
-        req.getRequestDispatcher("result.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/result.jsp").forward(req, resp);
     }
 }
