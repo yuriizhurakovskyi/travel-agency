@@ -34,12 +34,10 @@ public class SearchHotelByCityAndDateServlet extends HttpServlet {
         req.setAttribute("startDate", startDateStr);
         req.setAttribute("endDate", endDateStr);
         req.setAttribute("hotels", hotels);
-        HttpSession session = req.getSession(false);
-        if (session == null) {
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
             req.setAttribute("userLogged", "no");
-        } else {
-            req.setAttribute("userLogged", "yes");
-        }
+        } else req.setAttribute("userLogged", "yes");
         req.getRequestDispatcher("WEB-INF/result.jsp").forward(req, resp);
     }
 

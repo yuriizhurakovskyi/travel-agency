@@ -33,6 +33,10 @@ public class DeleteRoomServlet extends HttpServlet {
         hotelService.update(hotel);
         req.setAttribute("rooms", rooms);
         req.setAttribute("hotel", hotel);
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         req.getRequestDispatcher("WEB-INF/managerooms.jsp").forward(req, resp);
     }
 }
