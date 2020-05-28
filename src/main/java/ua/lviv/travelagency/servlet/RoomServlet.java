@@ -38,8 +38,8 @@ public class RoomServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Integer capacity = Integer.parseInt(req.getParameter("capacity"));
         String type = (req.getParameter("type"));
-        Boolean wifi = req.getParameter("wifi").equals("yes");
-        Boolean breakfast = req.getParameter("breakfast").equals("yes");
+        Boolean wifi = req.getParameter("wifi").equals("true");
+        Boolean breakfast = req.getParameter("breakfast").equals("true");
         Double price = Double.parseDouble(req.getParameter("price"));
         HttpSession session = req.getSession();
         Integer hotel_id = (Integer) session.getAttribute("hotelId");
