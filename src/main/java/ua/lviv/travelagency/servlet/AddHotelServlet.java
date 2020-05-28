@@ -31,6 +31,10 @@ public class AddHotelServlet extends HttpServlet {
         hotel = hotelService.create(hotel);
         HttpSession session = req.getSession();
         session.setAttribute("hotelId", hotel.getId());
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         resp.sendRedirect("addroom");
     }
 }

@@ -52,7 +52,8 @@
                         Rooms</a>
                     <div style="float: right">
                         <a href="/travel_agency_war_exploded/deleteHotel?hotelId=${hotel.id}" class="btn btn-danger">Delete</a>
-                        <button class="btn btn-primary updateRooms">Update</button>
+                        <a href="/travel_agency_war_exploded/updateHotel?hotelId=${hotel.id}"
+                           class="btn btn-primary updateRooms">Update</a>
                     </div>
                 </div>
 

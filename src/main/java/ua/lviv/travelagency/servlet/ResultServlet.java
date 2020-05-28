@@ -15,6 +15,10 @@ public class ResultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Hotel> hotels = (List<Hotel>) req.getSession().getAttribute("hotels");
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         req.setAttribute("hotels", hotels);
         req.getRequestDispatcher("WEB-INF/result.jsp").forward(req, resp);
     }

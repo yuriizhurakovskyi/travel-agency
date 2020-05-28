@@ -25,14 +25,15 @@ public class ReserveRoomServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer user_id = (Integer) req.getSession().getAttribute("userId");
         if (user_id == null) {
+            req.setAttribute("userLogged", "no");
             resp.sendRedirect("/travel_agency_war_exploded/login");
         } else {
+            req.setAttribute("userLogged", "yes");
             Integer roomId = Integer.parseInt(req.getParameter("id"));
             String startDateStr = req.getParameter("startDate");
             String endDateStr = req.getParameter("endDate");
             java.util.Date startDateUtil = null;
             java.util.Date endDateUtil = null;
-
             try {
                 startDateUtil = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
                         .parse(startDateStr);
@@ -50,7 +51,6 @@ public class ReserveRoomServlet extends HttpServlet {
                 Booking booking = new Booking(reserveDate, roomId, user_id);
                 bookingService.create(booking);
             }
-
             resp.sendRedirect("/travel_agency_war_exploded/result");
         }
     }
