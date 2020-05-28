@@ -40,7 +40,6 @@
                 <a href="#"><span class="fa fa-sticky-note mr-3"></span> Statistics</a>
             </li>
         </ul>
-
     </nav>
     <div id="content" class="p-4 p-md-5 pt-5">
         <div class="singleHotel" id="singleHotel">
