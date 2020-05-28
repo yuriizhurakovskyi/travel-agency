@@ -20,6 +20,10 @@ public class ManagerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Hotel> hotels = hotelService.readAll();
         req.setAttribute("hotels", hotels);
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         req.getRequestDispatcher("WEB-INF/manager.jsp").forward(req, resp);
     }
 

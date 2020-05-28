@@ -29,6 +29,10 @@ public class HotelDetailServlet extends HttpServlet {
         req.setAttribute("rooms", rooms);
         req.setAttribute("startDate", startDateStr);
         req.setAttribute("endDate", endDateStr);
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         req.getRequestDispatcher("WEB-INF/hotelDetails.jsp").forward(req, resp);
     }
 }

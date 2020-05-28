@@ -22,6 +22,10 @@ public class HotelServlet extends HttpServlet {
         List<String> citiesAndCountries = hotelService.readAllCitiesAndCountries();
         citiesAndCountries.sort(String::compareTo);
         req.setAttribute("citiesAndCountries", citiesAndCountries);
+        Integer user_id = (Integer) req.getSession().getAttribute("userId");
+        if (user_id == null) {
+            req.setAttribute("userLogged", "no");
+        } else req.setAttribute("userLogged", "yes");
         req.getRequestDispatcher("WEB-INF/hotels.jsp").forward(req, resp);
     }
 
